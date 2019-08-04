@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "joseph",
+    "password": "joseph",
+    "database": "idea",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": "joseph",
+    "database": "idea",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": "joseph",
+    "database": "idea",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
