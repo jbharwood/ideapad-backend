@@ -10,7 +10,7 @@ module.exports = {
           as: 'contents'
         }],
       })
-      .then((companies) => res.status(200).send(companies))
+      .then((ideas) => res.status(200).send(ideas))
       .catch((error) => { res.status(400).send(error); });
   },
 
@@ -22,13 +22,13 @@ module.exports = {
           as: 'contents'
         }],
       })
-      .then((company) => {
-        if (!company) {
+      .then((idea) => {
+        if (!idea) {
           return res.status(404).send({
             message: 'Idea Not Found',
           });
         }
-        return res.status(200).send(company);
+        return res.status(200).send(idea);
       })
       .catch((error) => res.status(400).send(error));
   },
@@ -39,7 +39,7 @@ module.exports = {
         subject: req.body.subject,
         category: req.body.category,
       })
-      .then((company) => res.status(201).send(company))
+      .then((idea) => res.status(201).send(idea))
       .catch((error) => res.status(400).send(error));
   },
 
@@ -55,7 +55,7 @@ module.exports = {
           as: 'contents'
         }]
       })
-      .then((company) => res.status(201).send(company))
+      .then((idea) => res.status(201).send(idea))
       .catch((error) => res.status(400).send(error));
   },
 
@@ -68,24 +68,24 @@ module.exports = {
           as: 'contents'
         }],
       })
-      .then(company => {
-        if (!company) {
+      .then(idea => {
+        if (!idea) {
           return res.status(404).send({
             message: 'Idea Not Found',
           });
         }
-        return company
+        return idea
           .updateAttributes({
-            subject: req.body.subject || company.subject,
-            category: req.body.category || company.category,
-            contents: req.body.contents || company.contents,
+            subject: req.body.subject || idea.subject,
+            category: req.body.category || idea.category,
+            contents: req.body.contents || idea.contents,
           }, {
               include: [{
               model: Content,
               as: 'contents'
             }]
           })
-          .then(() => res.status(200).send(company))
+          .then(() => res.status(200).send(idea))
           .catch((error) => {console.log(error);res.status(400).send(error);});
       })
       .catch((error) => {console.log(error);res.status(400).send(error);});
@@ -94,13 +94,13 @@ module.exports = {
   delete(req, res) {
     return Idea
       .findById(req.params.id)
-      .then(company => {
-        if (!company) {
+      .then(idea => {
+        if (!idea) {
           return res.status(400).send({
             message: 'Idea Not Found',
           });
         }
-        return company
+        return idea
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));

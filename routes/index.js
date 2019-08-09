@@ -4,19 +4,30 @@ var router = express.Router();
 const ideaController = require('../controllers').idea;
 const contentController = require('../controllers').content;
 
+var cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+app.use(cors());
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* Company Router */
+/* Idea Router */
 router.get('/api/idea', ideaController.list);
 router.get('/api/idea/:id', ideaController.getById);
 router.post('/api/idea', ideaController.add);
 router.put('/api/idea/:id', ideaController.update);
 router.delete('/api/idea/:id', ideaController.delete);
 
-/* Branch Router */
+/* Content Router */
 router.get('/api/content', contentController.list);
 router.get('/api/content/:id', contentController.getById);
 router.post('/api/content', contentController.add);
