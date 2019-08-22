@@ -6,6 +6,7 @@ module.exports = {
       idea_id : 1,
       post : 'Great lyrics',
       audio : 'sounds',
+      html : '<p>Great Lyrics<p>',
       createdAt : new Date(),
       updatedAt : new Date()
     }], {});

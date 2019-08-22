@@ -16,7 +16,7 @@ module.exports = {
 
   getById(req, res) {
     return Idea
-      .findById(req.params.id, {
+      .findByPk(req.params.id, {
         include: [{
           model: Content,
           as: 'contents'
@@ -62,7 +62,7 @@ module.exports = {
   update(req, res) {
     console.log(req.body);
     return Idea
-      .findById(req.params.id, {
+      .findByPk(req.params.id, {
         include: [{
           model: Content,
           as: 'contents'
@@ -93,7 +93,7 @@ module.exports = {
 
   delete(req, res) {
     return Idea
-      .findById(req.params.id)
+      .findByPk(req.params.id)
       .then(idea => {
         if (!idea) {
           return res.status(400).send({
