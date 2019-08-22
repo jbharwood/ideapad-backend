@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Content.associate = function(models) {
     Content.belongsTo(models.Idea, {
+      as: 'idea',
       foreignKey: 'idea_id'
     });
   };
