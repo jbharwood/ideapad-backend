@@ -15,6 +15,7 @@ module.exports = {
   },
 
   getById(req, res) {
+    debugger
     return Content
       .findByPk(req.params.id, {
         include: [{
@@ -63,6 +64,7 @@ module.exports = {
           .update({
             post: req.body.post || idea.post,
             audio: req.body.audio || idea.audio,
+            html: req.body.html || idea.html,
           })
           .then(() => res.status(200).send(content))
           .catch((error) => res.status(400).send(error));
@@ -72,7 +74,7 @@ module.exports = {
 
   delete(req, res) {
     return Content
-      .findByPk(req.params.id)
+      .findByPk(req.body.id)
       .then(content => {
         if (!content) {
           return res.status(400).send({

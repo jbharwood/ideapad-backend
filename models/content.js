@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     post: DataTypes.STRING,
     audio: DataTypes.STRING,
     html: DataTypes.STRING
-  }, {});
+  }, {
+      indexes:[
+       {
+         unique: true,
+         fields:['idea_id']
+       }
+      ]
+  });
   Content.associate = function(models) {
     Content.belongsTo(models.Idea, {
       as: 'idea',
